@@ -1,6 +1,4 @@
 package net.cupmanager.graphql;
-import graphql.ExecutionResult;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;

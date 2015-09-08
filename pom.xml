@@ -38,7 +38,16 @@
 		<artifactId>gson</artifactId>
 		<version>2.3.1</version>
 	</dependency>
-		
+	
+	<!-- TODO: apparently 'system' should be avoided  -->
+    <dependency>
+    	<groupId>com.graphql</groupId>
+    	<artifactId>graphql-java</artifactId>
+    	<version>2015-08-18T16-47-45</version>
+    	<scope>system</scope>
+    	<systemPath>${basedir}/graphql-java-2015-08-18T16-47-45.jar</systemPath>
+    </dependency>
+    
     <dependency>
       <groupId>org.antlr</groupId>
       <artifactId>antlr4-runtime</artifactId>

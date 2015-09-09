@@ -16,7 +16,7 @@ export default class RegistrationSidebar extends Component {
 
 				<br/>
 				<button>Ändra namn</button>
-
+ 
 				<hr/>
 				<Link to="/reg/123">ÖVERSIKT</Link> <br/>
 				<Link to="/reg/123/messages">MEDDELANDEN</Link> <br/>

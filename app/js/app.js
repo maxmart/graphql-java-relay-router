@@ -8,6 +8,7 @@ import { Router, Route } from 'react-router';
 import ReactRouterRelay from 'react-router-relay';
 import { history } from 'react-router/lib/HashHistory';
 
+import mui from 'material-ui-io';
 
 import App from './components/App';
 import RegistrationMessagesOverview from './components/RegistrationMessagesOverview';
@@ -35,7 +36,7 @@ const MessageQueries = {
 
 
 const loadingFunc = function () {
-  return <div>Loading...</div>;
+  return <mui.RefreshIndicator size={40} left={80} top={5} status="loading" />;
 };
 
 ReactDOM.render((

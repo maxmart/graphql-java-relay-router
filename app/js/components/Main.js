@@ -6,6 +6,6 @@ export default class Main extends Component {
 	}
 
 	render() {
-		return (<div>{this.props.children}</div>);
+		return (<div style={{marginLeft: 270, marginTop: 10}}>{this.props.children}</div>);
 	}
 }

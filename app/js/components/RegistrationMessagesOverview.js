@@ -4,6 +4,7 @@ import AddCommentMutation from '../mutations/AddCommentMutation';
 import CommentEditor from './CommentEditor';
 import { Link } from 'react-router';
 
+import mui from 'material-ui-io';
 
 class RegistrationMessagesOverview extends React.Component {
   constructor(props) {
@@ -18,25 +19,39 @@ class RegistrationMessagesOverview extends React.Component {
           boardroom: this.props.boardroom} )
     );
   }
-
+  
+  commentClicked(edge) {
+	  window.location.hash = `/reg/123/messages/${edge.node.id.substring(8)}`;
+  }
+  
   render() {
     return (<div>
       <h3>Messages</h3>
-      Comments:<br/>
+      
+      <mui.List subheader="Comments">
       {this.props.boardroom.comments.edges.map(function (edge) {
-        return (
-          <Link to={`/reg/123/messages/${edge.node.id.substring(8)}`} key={edge.node.id}>
-           {this.props.relay.hasOptimisticUpdate(edge.node) ? 'SAVING' : ''}
-           {edge.node.author.name} wrote '{edge.node.text}'
-           <br/>
-          </Link>
-
-		    );
+	      return (<div>
+	      <mui.ListItem
+	      	onClick={() => this.commentClicked(edge)}
+	        primaryText={edge.node.author.name}
+	        secondaryText={
+	          <p>
+	            {edge.node.text}
+	          </p>
+	        }
+	        secondaryTextLines={1} />
+	      <mui.ListDivider inset={true} />
+  		</div>);
       }.bind(this))}
-      <button onClick={this.addComment.bind(this)}>Add comment</button>
+      </mui.List>
+
+     <mui.RaisedButton label="Add Comment" primary={true}
+      	disabled={this.props.relay.hasOptimisticUpdate(this.props.boardroom)}
+      	onClick={this.addComment.bind(this)} />
 
       <hr/>
-      {this.props.children || 'No comment selected'}
+      
+     	{this.props.children || 'No comment selected'}
 
       </div>);
   }

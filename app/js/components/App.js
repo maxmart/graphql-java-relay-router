@@ -6,7 +6,20 @@ import RegistrationSidebar from './RegistrationSidebar';
 import RegistrationOverview from './RegistrationOverview';
 import {RouteHandler} from 'react-router';
 
+import mui from 'material-ui-io';
+let ThemeManager = new mui.Styles.ThemeManager();
+
 export default class App extends Component {
+	static childContextTypes = {
+		muiTheme: React.PropTypes.object
+	}
+	
+	getChildContext() {
+		return {
+	      muiTheme: ThemeManager.getCurrentTheme()
+	    };
+	}
+	
   constructor() {
   	super();
   	this.state = {

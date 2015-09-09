@@ -1,6 +1,6 @@
 import React from 'react';
 import Relay from 'react-relay';
-import AddCommentMutation from './mutations/AddCommentMutation';
+import AddCommentMutation from '../mutations/AddCommentMutation';
 import CommentEditor from './CommentEditor';
 import { Link } from 'react-router';
 
@@ -20,13 +20,12 @@ class RegistrationMessagesOverview extends React.Component {
   }
 
   render() {
-    console.log(this.props.relay);
     return (<div>
-      MESSAGES! <br/>
+      <h3>Messages</h3>
       Comments:<br/>
       {this.props.boardroom.comments.edges.map(function (edge) {
         return (
-          <Link to={`/reg/messages/${edge.node.id.substring(8)}`} key={edge.node.id}>
+          <Link to={`/reg/123/messages/${edge.node.id.substring(8)}`} key={edge.node.id}>
            {this.props.relay.hasOptimisticUpdate(edge.node) ? 'SAVING' : ''}
            {edge.node.author.name} wrote '{edge.node.text}'
            <br/>

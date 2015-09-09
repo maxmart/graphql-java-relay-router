@@ -68,7 +68,7 @@ public class GraphQLServerStart {
 		    		
 		    		
 		    		try {
-						Thread.sleep(1500);
+						Thread.sleep(100);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}

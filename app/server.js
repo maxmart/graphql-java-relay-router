@@ -21,11 +21,11 @@ var compiler = webpack({
           stage: 0,
           plugins: ['./build/babelRelayPlugin']
         }
-      },
+      }/*,
       {
         test: /\.js$/,
         loader: 'eslint'
-      }
+      }*/
     ]
   },
   output: {filename: 'app.js', path: '/'}

@@ -1,4 +1,5 @@
 import 'babel/polyfill';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -7,12 +8,16 @@ import { Router, Route } from 'react-router';
 import ReactRouterRelay from 'react-router-relay';
 import { history } from 'react-router/lib/HashHistory';
 
-import RegistrationMessagesOverview from './RegistrationMessagesOverview';
-import SingleMessageView from './SingleMessageView';
+
+import App from './components/App';
+import RegistrationMessagesOverview from './components/RegistrationMessagesOverview';
+import SingleMessageView from './components/SingleMessageView';
+import RegistrationOverview from './components/RegistrationOverview'; 
+import RegistrationEconomyOverview from './components/RegistrationEconomyOverview'; 
+import TeamOverview from './components/TeamOverview'; 
 
 
 const ViewerQueries = {
-  // boardroom: (Component) => Relay.QL`query { boardroom }`
   boardroom: () => Relay.QL`
       query RootQuery {
         boardroom
@@ -28,70 +33,21 @@ const MessageQueries = {
     `
 };
 
+
+const loadingFunc = function () {
+  return <div>Loading...</div>;
+};
+
 ReactDOM.render((
   <Router history={history} createElement={ReactRouterRelay.createElement}>
-      <Route path="/reg/messages" 
-        component={RegistrationMessagesOverview}
-        renderLoading={function () {
-          return <div>laddar</div>
-        }}
-        queries={ViewerQueries}>
-      
-      <Route path=":messageId" 
-            component={SingleMessageView} 
-            renderLoading={function () {
-              return <div>laddar! </div>;
-            }} 
-            queries={MessageQueries}
-          />
-      </Route>
+    <Route path="/reg/:id" component={App} indexRoute={{component:RegistrationOverview}}> // apparently the indexRoute is in flux for react-router 1.0 and might change
+		<Route path="messages" component={RegistrationMessagesOverview} queries={ViewerQueries} renderLoading={loadingFunc} >
+			<Route path=":messageId" component={SingleMessageView} queries={MessageQueries} renderLoading={loadingFunc} />
+		</Route>
+		<Route path="economy" component={RegistrationEconomyOverview} />
+		<Route path="team/:teamId" component={TeamOverview} />
+	</Route>
+  
   </Router>),
   document.getElementById('root'));
 
-/*
-class TodoAppHomeRoute extends Relay.Route {
-  static path = '/';
-  static queries = {
-    boardroom: (Component) => Relay.QL`
-      query RootQuery {
-        boardroom {
-          ${Component.getFragment('boardroom')}
-        },
-      }
-    `,
-  };
-  static routeName = 'TodosHomeRoute';
-}
-React.render(
-  <Relay.RootContainer Component={RegistrationMessagesOverview}
-    renderLoading={function () {
-      return <div>Loading...</div>;
-    }}
-    route={new TodoAppHomeRoute()} />,
-  document.getElementById('root')
-);
-
-*/
-
-/*
-class TestRoute extends Relay.Route {
-  static path = '/';
-  static queries = {
-    boardroom: (Component) => Relay.QL`
-      query RootQuery {
-        boardroom {
-          ${Component.getFragment('boardroom')},
-        },
-      }
-    `,
-  };
-  static routeName = 'TestRoute';
-}
-
-
-React.render(
-    <Relay.RootContainer Component={RegistrationMessagesOverview}
-      route={new TestRoute()} />,
-    document.getElementById('root')
-  );
-*/

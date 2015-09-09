@@ -1,6 +1,6 @@
 import React from 'react';
 import Relay from 'react-relay';
-import EditCommentMutation from './mutations/EditCommentMutation';
+import EditCommentMutation from '../mutations/EditCommentMutation';
 
 class CommentEditor extends React.Component {
   constructor(props) {

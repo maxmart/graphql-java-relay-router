@@ -9,7 +9,7 @@ export default class TeamOverview extends Component {
 
 	render() {
 		return (<div>
-			ETT LAG! 
+			<h3>TODO: Team Overview</h3>
 		</div>);
 	}
 }

@@ -13,7 +13,7 @@ class CommentEditor extends React.Component {
 
   save() {
     Relay.Store.update(
-        new EditCommentMutation({text: 'Ändrad kommentar!',
+        new EditCommentMutation({text: 'Modified text of comment!',
           comment: this.props.comment} )
     );
   }
@@ -26,13 +26,13 @@ class CommentEditor extends React.Component {
 
   render() {
     return (<div key={this.props.key} onClick={this.toggle.bind(this)}>
-          {this.state.editing ? 'EDITING' : ''}
+          {this.state.editing ? 'EDITING: ' : ''}
           {this.props.relay.hasOptimisticUpdate(this.props.comment) ?
-            'SAVING' : ''}
+            'SAVING: ' : ''}
           {this.props.comment.author.name} wrote '{this.props.comment.text}'
           {this.state.editing ? (
-              <button onClick={this.save.bind(this)}>Save</button>
-            ) : ''}
+              <button onClick={this.save.bind(this)}>Modify comment</button>
+            ) : ' (click to edit)'}
         </div>);
   }
 }

@@ -8,7 +8,7 @@ export default class ShirtColorPart extends React.Component {
 	render() {
 		return (
 			<div>
-				<h2>Tröjfärger</h2>
+				<h2>Shirt color</h2>
 				<p>
 					bla bla
 				</p>

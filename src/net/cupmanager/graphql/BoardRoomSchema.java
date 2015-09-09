@@ -4,17 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.cupmanager.graphql.GraphQLTest.Argument;
-
 public class BoardRoomSchema {
 	public static Map<Integer,Comment> comments = new HashMap<Integer,Comment>();
 	private static Map<Integer,User> users = new HashMap<Integer,User>();
 	static{
-		comments.put(1, new Comment(1, 98, "Hejsan på er"));
-		comments.put(2, new Comment(2, 99, "Scchysch!"));
+		comments.put(1, new Comment(1, 98, "Hey guys! Wanna go for lunch?"));
+		comments.put(2, new Comment(2, 99, "Alright, sounds cool!"));
 		
-		users.put(98, new User(98, "Max Författaren"));
-		users.put(99, new User(99, "Mux Fattaru"));
+		users.put(98, new User(98, "Max Martinsson"));
+		users.put(99, new User(99, "Someo N. Eelse"));
 	}
 	
 	
@@ -62,7 +60,7 @@ public class BoardRoomSchema {
 	public static class BoardRoom {
 		public String id = "BoardRoom:1";
 		
-		public List<Comment> comments(@Argument("id") Integer id) {
+		public List<Comment> comments(Integer id) {
 			List<Comment> cs = new ArrayList<>();
 			if (id == null) {
 				cs.addAll(comments.values());
@@ -75,13 +73,6 @@ public class BoardRoomSchema {
 		public String getId() {
 			return id;
 		}
-		
-//		public static void postComment(@Argument("author") String author, @Argument("text") String text) {
-//			Map<String,String> comment1 = new HashMap<>();
-//			comment1.put("author", author);
-//			comment1.put("text", text);
-//			comments.add(comment1);
-//		}
 	}
 	
 	static BoardRoom theOnlyBoardRoom = new BoardRoom();
@@ -89,15 +80,5 @@ public class BoardRoomSchema {
 		public static BoardRoom boardroom() {
 			return theOnlyBoardRoom;
 		}
-	}
-	
-	public static class AddCommentInput {
-		public String clientMutationId;
-		public String text;
-	}
-	public static class AddCommentPayload {
-		public String clientMutationId;
-		public Comment comment;
-		public BoardRoom boardRoom;
 	}
 }

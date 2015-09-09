@@ -8,7 +8,7 @@ export default class ArrivalInfoPart extends React.Component {
 	render() {
 		return (
 			<div>
-				<h2>Ankomst</h2>
+				<h2>Arrival information</h2>
 				<p>
 					bla bla
 				</p>

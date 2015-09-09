@@ -9,8 +9,6 @@ import com.google.gson.GsonBuilder;
 
 public class ExportSchema {
 	public static void main(String[] args) {
-
-		
 		Map<String, Object> result = GraphQLTest.exec(query, Collections.emptyMap());
 		Map<String,Object> ut = new HashMap<String,Object>();
 		ut.put("data", result);

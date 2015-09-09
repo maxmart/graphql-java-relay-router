@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Relay from 'react-relay';
-import { Router, Route } from 'react-router';
+import { Router, Route, Redirect } from 'react-router';
 import ReactRouterRelay from 'react-router-relay';
 import { history } from 'react-router/lib/HashHistory';
 
@@ -16,7 +16,6 @@ import SingleMessageView from './components/SingleMessageView';
 import RegistrationOverview from './components/RegistrationOverview'; 
 import RegistrationEconomyOverview from './components/RegistrationEconomyOverview'; 
 import TeamOverview from './components/TeamOverview'; 
-
 
 const ViewerQueries = {
   boardroom: () => Relay.QL`
@@ -41,14 +40,14 @@ const loadingFunc = function () {
 
 ReactDOM.render((
   <Router history={history} createElement={ReactRouterRelay.createElement}>
+    <Redirect from="/" to="/reg/123" />
     <Route path="/reg/:id" component={App} indexRoute={{component:RegistrationOverview}}> // apparently the indexRoute is in flux for react-router 1.0 and might change
 		<Route path="messages" component={RegistrationMessagesOverview} queries={ViewerQueries} renderLoading={loadingFunc} >
 			<Route path=":messageId" component={SingleMessageView} queries={MessageQueries} renderLoading={loadingFunc} />
 		</Route>
 		<Route path="economy" component={RegistrationEconomyOverview} />
-		<Route path="team/:teamId" component={TeamOverview} />
-	</Route>
-  
+		<Route path="team/:teamId" component={TeamOverview} />	
+	</Route>  
   </Router>),
   document.getElementById('root'));
 

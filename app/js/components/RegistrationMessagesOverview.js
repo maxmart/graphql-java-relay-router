@@ -15,7 +15,7 @@ class RegistrationMessagesOverview extends React.Component {
   addComment() {
     console.log(this.props.boardroom);
     Relay.Store.update(
-        new AddCommentMutation({text: 'Den nya kommentaren!',
+        new AddCommentMutation({text: 'A new comment with a non-informative text :-)',
           boardroom: this.props.boardroom} )
     );
   }

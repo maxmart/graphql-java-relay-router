@@ -21,8 +21,6 @@ export default Relay.createContainer(SingleMessageView, {
     comment: () => Relay.QL`
       fragment on Comment {
         id,
-        author {name}
-        text,
         ${CommentEditor.getFragment('comment')}
       }
     `
